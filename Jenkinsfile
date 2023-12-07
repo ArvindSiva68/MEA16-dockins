@@ -50,7 +50,7 @@ pipeline {
             steps {
 
                 sh '''
-                echo "Not used atm"
+                docker system prune -f
                 '''
 
             }
