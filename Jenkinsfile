@@ -25,8 +25,22 @@ pipeline {
             steps {
 
                 sh'''
-                docker build -t flask-jenk .
-                docker build -t nginx-jenk ./nginx
+                docker build -t arvindsiva68/flask-jenk:latest -t arvindsiva68/flask-jenk:v${BUILD NUMBER} .
+                docker build -t arvindsiva68/nginx-jenk:latest -t arvindsiva68/nginx-jenk:v${BUILD NUMBER} ./nginx
+                '''
+
+            }
+
+        }
+                stage('Push') {
+
+            steps {
+
+                sh'''
+                docker push arvindsiva68/flask-jenk:latest
+                docker push arvindsiva68/flask-jenk:v${BUILD NUMBER}
+                docker push arvindsiva68/nginx-jenk:latest
+                docker push arvindsiva68/nginx-jenk:v${BUILD NUMBER}
                 '''
 
             }
@@ -38,8 +52,8 @@ pipeline {
             steps {
 
                 sh'''
-                docker run -d --name flask-app --network jenk-network flask-jenk
-                docker run -d -p 80:80 --name nginx --network jenk-network nginx-jenk
+                docker run -d --name flask-app --network jenk-network arvindsiva68/flask-jenk
+                docker run -d -p 80:80 --name nginx --network jenk-network arvindsiva68/nginx-jenk
                 '''
 
             }
