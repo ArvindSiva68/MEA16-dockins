@@ -25,8 +25,8 @@ pipeline {
             steps {
 
                 sh'''
-                docker build -t arvindsiva68/flask-jenk:latest -t arvindsiva68/flask-jenk:v${BUILD NUMBER} .
-                docker build -t arvindsiva68/nginx-jenk:latest -t arvindsiva68/nginx-jenk:v${BUILD NUMBER} ./nginx
+                docker build -t arvindsiva68/flask-jenk:latest -t arvindsiva68/flask-jenk:v${BUILD_NUMBER} .
+                docker build -t arvindsiva68/nginx-jenk:latest -t arvindsiva68/nginx-jenk:v${BUILD_NUMBER} ./nginx
                 '''
 
             }
@@ -38,9 +38,9 @@ pipeline {
 
                 sh'''
                 docker push arvindsiva68/flask-jenk:latest
-                docker push arvindsiva68/flask-jenk:v${BUILD NUMBER}
+                docker push arvindsiva68/flask-jenk:v${BUILD_NUMBER}
                 docker push arvindsiva68/nginx-jenk:latest
-                docker push arvindsiva68/nginx-jenk:v${BUILD NUMBER}
+                docker push arvindsiva68/nginx-jenk:v${BUILD_NUMBER}
                 '''
 
             }
