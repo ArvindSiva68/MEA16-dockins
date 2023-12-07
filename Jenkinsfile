@@ -65,7 +65,6 @@ pipeline {
 
                 sh '''
                 docker system prune -f
-                echo "prune time"
                 '''
 
             }
